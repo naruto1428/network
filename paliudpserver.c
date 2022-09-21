@@ -19,22 +19,12 @@ while(1)
 {recvfrom(socket_descriptor,&message,sizeof(message),0,(struct sockaddr *)&client_address,&n);
 printf("\nThe String recieved is:%s\n",message);
 int n=strlen(message);
-if(n==0)
-flag=1;
-else
+for(int i=0;i<n  ;i++)
 {
-left=0;
-right=n-1;
-flag=1;
-while(left<right && flag)
+if(message[i] !=message[n-i-1])
 {
-if(message[left]!=message[right])
-flag=0;
-else
-{
-left++;
-right--;
-}
+flag = 1;
+break;
 }
 }
 sendto(socket_descriptor,&flag,sizeof(int),0,(struct sockaddr *)&client_address,n);
